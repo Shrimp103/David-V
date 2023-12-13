@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    #chat-container {
+      width: 300px;
+      height: 400px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      overflow-y: scroll;
+    }
+  </style>
+</head>
+<body>
+
+<div id="chat-container"></div>
+<input type="text" id="user-input" placeholder="Talk to me">
+<button onclick="sendMessage()">Send</button>
+
+<script>
+
+  function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    var chatContainer = document.getElementById("chat-container");
+
+    var modifiedInput = userInput.replace(/I/g, 'you');
+
+    var responses = {
+      "hello": "Heyo, how was your day?",
+      "hiya": "Heyo, how was your day?",
+      "yo": "Heyo, how was your day?",
+      "hi": "Heyo, how was your day?",
+      "greetings": "Heyo, how was your day?",
+      default: "My developer is shit. He didn't tech me the response to this yet",
+    };
+
+    var response = responses[userInput.toLowerCase()] || responses.default;
+      
+    chatContainer.innerHTML += "<p>" + response + "</p>"
+    document.getElementById("user-input").value = ""
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
